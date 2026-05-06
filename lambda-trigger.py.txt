@@ -1,0 +1,12 @@
+import json
+
+def lambda_handler(event, context):
+    name = "Guest"
+
+    if 'queryStringParameters' in event and event['queryStringParameters']:
+        name = event['queryStringParameters'].get('name', 'Guest')
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(f"Hello, {name}! Welcome to Lambda HTTP trigger.")
+    }
